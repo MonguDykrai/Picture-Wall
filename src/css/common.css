@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #999;
+  min-width: 1250px;
+  font-family: yanone kaffeesatz,verdana,tahoma;
+  font-size: 14px;
+  background-color: #162028;
+  background-image: url(../images/bg-pattern.png);
+  background-size: 10px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.display-flex {
+  display: flex;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  overflow: hidden;
+}
+
+.actived {
+  font-weight: 700;
+}
