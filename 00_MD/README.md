@@ -44,14 +44,10 @@ export default function PWCategoriesItem ({ category }) {
 
 ## 刷新后路由匹配出问题
 
-localhost:3000/nature
+localhost:3000/nature，显示localhost:3000/的内容
 
-显示localhost:3000/的内容
-
-怎么解决？
+如何解决？
 2018年6月11日20:23:51
-
-路由匹配一次componentDidMount会触发*两次*是否正常？
 
 > 解决方案：
 
@@ -76,3 +72,17 @@ componentDidMount(props) {
 }
 
 ```
+
+路由匹配一次componentDidMount会触发*两次*是否正常？
+
+不正常，_renderPWListItem执行了（console.log(item)打印了）两次2018年6月12日01:55:49
+
+![请求了两次](./images/request_send_twice_01.png)
+
+## 待追加功能
+
+1. 注册
+2. 登录
+3. 登录验证
+4. 面包屑导航
+5. 筛选

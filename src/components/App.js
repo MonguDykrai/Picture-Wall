@@ -21,13 +21,27 @@ export default class App extends React.Component {
         <div className="picture-wall-wrapper">
           {/* Navigation */}
           <PWNavigation />
+
           {/* Logo */}
           <PWLogo screenInfo={this.state.screenInfo} />
+
           {/* Categories */}
           <PWCategories />
+
           {/* breadcrumb-sortby */}
           <PWBreadCrumbSortBy />
-          <Route path="/" component={PWWallpapers} />
+
+          {/* wallpapers-category */}
+          <Route exact path="/" component={PWWallpapers} />
+          <Route exact path="/cars" component={PWWallpapers} />
+          <Route exact path="/nature" component={PWWallpapers} />
+          <Route exact path="/Video_Games" component={PWWallpapers} />
+          
+          {/* wallpapers-detail */}
+          <Route path="/featured/:id" render={() => <h1>featured/:id</h1>} />
+          <Route path="/cars/:id" render={() => <h1>cars/:id</h1>} />
+          <Route path="/nature/:id" render={() => <h1>nature/:id</h1>} />
+          <Route path="/Video_Games/:id" render={() => <h1>Video_Games/:id</h1>} />
         </div>
       </Router>
     )
