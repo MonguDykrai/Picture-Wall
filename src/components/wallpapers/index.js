@@ -47,4 +47,22 @@ export default class PWWallpapers extends React.Component {
       return <PWListItem key={item.id} {...item} />
     })
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevPathName = prevProps.location.pathname
+    const currentPathName = this.props.location.pathname
+    if (prevPathName !== currentPathName) {
+      const path = currentPathName === '/' ? `/featured`: currentPathName
+      fetch(`http://localhost:3004${path}`)
+        .then(res => {
+          return res.json()
+        })
+        .then(data => {
+          this.setState({
+            listItems: data
+          })
+        })
+    }
+
+  }
 }

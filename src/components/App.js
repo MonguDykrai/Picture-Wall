@@ -1,4 +1,5 @@
 import React from 'react'
+import { HashRouter as Router, Route } from 'react-router-dom'
 import PWNavigation from './navigation'
 import PWLogo from './logo'
 import PWCategories from './categories'
@@ -16,18 +17,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="picture-wall-wrapper">
-        {/* Navigation */}
-        <PWNavigation />
-        {/* Logo */}
-        <PWLogo screenInfo={this.state.screenInfo} />
-        {/* Categories */}
-        <PWCategories />
-        {/* breadcrumb-sortby */}
-        <PWBreadCrumbSortBy />
-        {/* wallpapers */}
-        <PWWallpapers />
-      </div>
+      <Router>
+        <div className="picture-wall-wrapper">
+          {/* Navigation */}
+          <PWNavigation />
+          {/* Logo */}
+          <PWLogo screenInfo={this.state.screenInfo} />
+          {/* Categories */}
+          <PWCategories />
+          {/* breadcrumb-sortby */}
+          <PWBreadCrumbSortBy />
+          <Route path="/" component={PWWallpapers} />
+        </div>
+      </Router>
     )
   }
 }

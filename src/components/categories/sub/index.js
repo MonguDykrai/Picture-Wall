@@ -1,9 +1,10 @@
 import React from 'react'
+import { NavLink as Link } from 'react-router-dom'
 
-export default function PWCategoriesItem ({category}) {
+export default function PWCategoriesItem ({ category }) {
   return (
     <li className="ul-categories-item">
-      <a href="javascript: void(0);">{ category }</a>
+      <Link to={`/${category}`} activeClassName="current">{ category }</Link>
     </li>
   )
 }

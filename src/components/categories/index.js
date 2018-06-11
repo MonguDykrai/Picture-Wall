@@ -7,7 +7,7 @@ export default class PWCategories extends React.Component {
     initCategories: [
       {id: 0, category: 'cars'},
       {id: 1, category: 'nature'},
-      {id: 2, category: 'Video Games'},
+      {id: 2, category: 'Video_Games'},
       {id: 3, category: 'Landscapes'},
       {id: 4, category: 'animals'},
       {id: 5, category: 'anime'},
@@ -47,9 +47,5 @@ export default class PWCategories extends React.Component {
     return this.state.categories.map(item => {
       return <PWCategoriesItem key={item.id} {...item} />
     })
-  }
-
-  componentWillReceiveProps() {
-    console.log(`componentWillReceiveProps`)
   }
 }

@@ -44,3 +44,7 @@ ul {
 .actived {
   font-weight: 700;
 }
+
+.current {
+  color: red;
+}
