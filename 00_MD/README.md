@@ -47,3 +47,32 @@ export default function PWCategoriesItem ({ category }) {
 localhost:3000/nature
 
 显示localhost:3000/的内容
+
+怎么解决？
+2018年6月11日20:23:51
+
+路由匹配一次componentDidMount会触发*两次*是否正常？
+
+> 解决方案：
+
+```js
+
+constructor(props) {
+
+  super(props)
+  // console.warn(`PWWallpapers组件生命周期钩子：constructor`)
+
+  this.state = {
+    listItems: this.props.initListItems,
+    currentPath: this.props.location.pathname
+  }
+}
+
+componentDidMount(props) {
+  console.warn(`PWWallpapers组件生命周期钩子：componentDidMount`)
+  const { currentPath } = this.state
+  const path = currentPath === '/' ? `/featured`: currentPath
+  this._doFetch(path)
+}
+
+```

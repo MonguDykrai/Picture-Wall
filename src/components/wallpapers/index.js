@@ -27,12 +27,16 @@ export default class PWWallpapers extends React.Component {
   constructor(props) {
 
     super(props)
+    // console.warn(`PWWallpapers组件生命周期钩子：constructor`)
 
     this.state = {
-      listItems: this.props.initListItems
+      listItems: this.props.initListItems,
+      currentPath: this.props.location.pathname
     }
   }
+
   render() {
+    // console.warn(`PWWallpapers组件生命周期钩子：render`)
     return(
       <div className="wallpapers-container">
         <ul className="wp-list">
@@ -42,6 +46,17 @@ export default class PWWallpapers extends React.Component {
     )
   }
 
+  componentDidMount(props) {
+    // console.warn(`PWWallpapers组件生命周期钩子：componentDidMount`)
+    const { currentPath } = this.state
+    const path = currentPath === '/' ? `/featured`: currentPath
+    this._doFetch(path)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // console.warn(`PWWallpapers组件生命周期钩子：componentWillReceiveProps`)
+  }
+
   _renderPWListItem() {
     return this.state.listItems.map(item => {
       return <PWListItem key={item.id} {...item} />
@@ -49,20 +64,24 @@ export default class PWWallpapers extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // console.warn(`PWWallpapers组件生命周期钩子：componentDidUpdate`)
     const prevPathName = prevProps.location.pathname
     const currentPathName = this.props.location.pathname
     if (prevPathName !== currentPathName) {
       const path = currentPathName === '/' ? `/featured`: currentPathName
-      fetch(`http://localhost:3004${path}`)
-        .then(res => {
-          return res.json()
-        })
-        .then(data => {
-          this.setState({
-            listItems: data
-          })
-        })
+      this._doFetch(path)
     }
+  }
 
+  _doFetch(path) {
+    fetch(`http://localhost:3004${path}`)
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        this.setState({
+          listItems: data
+        })
+      })
   }
 }

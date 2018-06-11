@@ -2390,9 +2390,9 @@ export default class MovieContainer extends React.Component {
     console.log(PropTypes)
     class CommentList extends React.Component {
       render() {
-        return ( 
+        return (
           <div>
-            CommentList 
+            CommentList
           </div>
         )
       }
