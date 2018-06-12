@@ -1,14 +1,18 @@
 import React from 'react'
+import PWGalleryItem from './sub/category-item'
+import PWDetailPicture from './sub/detail-picture'
 
 export default class PWWPCategoryDetail extends React.Component {
   constructor(props) {
     super(props)
 
-    console.log(`props:${props}`)
+    console.log(`props`)
 
     this.state = {
       currentPath: this.props.match.url,
-      url: ''
+      url: '',
+      galleryItemsUrl: props.location.pathname.substr(0, props.location.pathname.lastIndexOf('/')),
+      galleryItems: []
     }
   }
 
@@ -21,65 +25,36 @@ export default class PWWPCategoryDetail extends React.Component {
             <span className="arrowLeft">&lt;</span>
           </div>
           <ul className="ul-gallery">
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
-            <li className="ul-gallery-item">
-              <a href="javascript: void(0);">
-                <img src="../src/images/cars/125879.jpg" alt="car" />
-              </a>
-            </li>
+            { this._renderPWGalleryItems() }
           </ul>
           <div className="gallery-rightArrow-container">
               <span className="arrowRight">&gt;</span>
           </div>
         </div>
-        <div className="category-detail-picture-container">
-          <img src={ `../src/images/${this.state.url}` } alt="" />
-        </div>
+        <PWDetailPicture url={ this.state.url } />
       </div>
     )
   }
   
   componentDidMount() {
     const { currentPath } = this.state
-    this._doFetch(currentPath)
+    this._doFetchPic(currentPath)
     console.log(`currentPath:${currentPath}`);
+
+    this._doFetchGallery(this.state.galleryItemsUrl)
   }
 
-  _doFetch(path) {
+
+
+  _renderPWGalleryItems() {
+    return this.state.galleryItems.map(item => {
+      return (
+        <PWGalleryItem key={ item.id } {...item} />
+      )
+    })
+  }
+
+  _doFetchPic(path) {
     fetch(`http://localhost:3004${path}`)
       .then(res => {
         return res.json()
@@ -87,6 +62,21 @@ export default class PWWPCategoryDetail extends React.Component {
       .then(data => {
         this.setState({
           url: data.address
+        })
+      })
+  }
+
+  _doFetchGallery(path) {
+    fetch(`http://localhost:3004${path}`)
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        console.log(data)
+        this.setState({
+          galleryItems: data
+        }, function () {
+          console.log(this.state.galleryItems);
         })
       })
   }
