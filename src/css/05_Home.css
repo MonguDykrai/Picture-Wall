@@ -187,6 +187,7 @@ ul.wp-list li.wp-list-item .pic-created-time {
   width: 80px;
   height: 150px;
   background-color: #19191B;
+  z-index: 3;
 }
 
 span.arrowLeft {
@@ -227,8 +228,11 @@ span.arrowRight {
 }
 
 .category-detail-gallery ul.ul-gallery {
-  width: 200%;
-  height: 114px;
+  position: absolute;
+  left: 80px;
+  width: 400%;
+  height: 100%;
+  overflow: initial;
 }
 
 ul.ul-gallery li.ul-gallery-item {
@@ -236,6 +240,11 @@ ul.ul-gallery li.ul-gallery-item {
   width: 114px;
   height: 84px;
   margin: 33px 18px 33px 0;
+}
+
+ul.ul-gallery li.ul-gallery-item a {
+  display: block;
+  border: 2px solid #fff;
 }
 
 .wallpapers-category-detail-container .category-detail-picture-container {
