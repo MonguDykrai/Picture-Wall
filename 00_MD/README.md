@@ -86,3 +86,9 @@ componentDidMount(props) {
 3. 登录验证
 4. 面包屑导航
 5. 筛选
+
+## 详情页如何获取数据
+
+![获取数据](./images/detail_page_how_to_get_image_info.png)
+
+## 详情页应该带着分类，分类图片应该有好几张，目前只有一张有问题
