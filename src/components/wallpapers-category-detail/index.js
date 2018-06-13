@@ -8,19 +8,23 @@ export default class PWWPCategoryDetail extends React.Component {
     this._handleClickLeftArrow = this._handleClickLeftArrow.bind(this)
     this._handleClickRightArrow = this._handleClickRightArrow.bind(this)
 
+    const galleryItemsUrl = props.location.pathname.substr(0, props.location.pathname.lastIndexOf('/'))
+
     this.state = {
       currentPath: this.props.match.url,
       detailPicUrl: '',
-      galleryItemsUrl: props.location.pathname.substr(0, props.location.pathname.lastIndexOf('/')),
+      galleryItemsUrl,
       galleryItems: [],
+      ulGalleryStyleLeft: 0,
+      isLoaded: false,
+      ulGalleryMinLeft: 0
     }
 
-    this._gapLeft = 80
-    this._gapRight = -80
+    this.count = 0
   }
 
   render() {
-    // console.log(`this.state.detailPicUrl:${this.state.detailPicUrl}`);
+    console.error(`生命周期钩子：render`)
     return (
       <div className="wallpapers-category-detail-container">
         <div className="category-detail-gallery">
@@ -39,33 +43,24 @@ export default class PWWPCategoryDetail extends React.Component {
     )
   }
 
-  _handleClickLeftArrow() {
-    console.log(`left`)
-    this._gapLeft = this._gapLeft - 10
-    this._ul.style.left = `${this._gapLeft}px`
-  }
-
-  _handleClickRightArrow() {
-    console.log(`right`)
-    this._gapRight = this._gapRight - 10
-    this._ul.style.left = `${this._gapRight}px`
-  }
-  
   componentDidMount() {
+    this.setState({
+      ulGalleryStyleLeft: this._getCssProperty(this._ul, 'left').replace(/px/, '')
+    })
     const { currentPath } = this.state
     const { galleryItemsUrl } = this.state
     this._doFetch(currentPath)
-    console.log(`currentPath:${currentPath}`);
+    console.warn(`currentPath: ${currentPath}`);
 
     this._doFetch(galleryItemsUrl)
   }
 
-  _renderPWGalleryItems() {
-    return this.state.galleryItems.map(item => {
-      return (
-        <PWGalleryItem key={ item.id } {...item} />
-      )
-    })
+  componentDidUpdate(prevProps) {
+    const prevPathName = prevProps.location.pathname
+    const currentPathName = this.props.location.pathname
+    if (prevPathName !== currentPathName) {
+      this._doFetch(currentPathName)
+    }
   }
 
   _doFetch(path) {
@@ -81,7 +76,8 @@ export default class PWWPCategoryDetail extends React.Component {
           })
         } else {
           this.setState({
-            galleryItems: data
+            galleryItems: data,
+            isLoaded: true
           }, function () {
             // console.log(this.state.galleryItems);
           })
@@ -89,12 +85,51 @@ export default class PWWPCategoryDetail extends React.Component {
       })
   }
 
-  componentDidUpdate(prevProps) {
-    const prevPathName = prevProps.location.pathname
-    const currentPathName = this.props.location.pathname
-    if (prevPathName !== currentPathName) {
-      this._doFetch(currentPathName)
+  _renderPWGalleryItems() {
+    this.count++
+    console.log(`_renderPWGalleryItems: ${this.count}`)
+    if (this.state.isLoaded) {
+      if (this.state.ulGalleryMinLeft === 0) {
+        const length = this.state.galleryItems.length
+        this.setState({
+          // 写死的，待优化
+          ulGalleryMinLeft: (length * (114 + 18)) - 1090
+        }, function () {
+          console.log(this.state.ulGalleryMinLeft)
+        })
+      }
+      return this.state.galleryItems.map(item => {
+        return (
+          <PWGalleryItem key={ item.id } {...item} />
+        )
+      })
     }
+
+  }
+
+  _getCssProperty(elem, property){
+    return window.getComputedStyle(elem,null).getPropertyValue(property);
+  }
+
+  _handleClickLeftArrow() {
+    const { ulGalleryStyleLeft } = this.state
+    if (ulGalleryStyleLeft >= 80) return
+    this._gapLeft = Number(ulGalleryStyleLeft) + 50
+    this.setState({
+      ulGalleryStyleLeft: this._gapLeft
+    })
+    this._ul.style.left = `${this._gapLeft}px`
+  }
+
+  _handleClickRightArrow() {
+    const { ulGalleryStyleLeft } = this.state
+    const { ulGalleryMinLeft } = this.state
+    if (ulGalleryStyleLeft <= -ulGalleryMinLeft) return
+    this._gapRight = Number(ulGalleryStyleLeft) - 50
+    this.setState({
+      ulGalleryStyleLeft: this._gapRight
+    })
+    this._ul.style.left = `${this._gapRight}px`
   }
 }
 
