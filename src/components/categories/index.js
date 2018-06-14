@@ -1,4 +1,5 @@
 import React from 'react'
+import fetchJsonp from 'fetch-jsonp'
 import PropTypes from 'prop-types'
 import PWCategoriesItem from './sub'
 
@@ -28,7 +29,8 @@ export default class PWCategories extends React.Component {
     super(props)
 
     this.state = {
-      categories: this.props.initCategories
+      categories: this.props.initCategories,
+      isLoaded: false
     }
   }
   render() {
@@ -43,9 +45,24 @@ export default class PWCategories extends React.Component {
     )
   }
 
+  componentDidMount() {
+    fetchJsonp('http://localhost:5000/')
+    .then(res => {
+      return res.json()
+    })
+    .then(data => {
+      console.log(data)
+      this.setState({
+        categories: data,
+        isLoaded: true
+      })
+    })
+  }
   _renderPWCategoriesItem() {
+    const { isLoaded } = this.state
+    if (!isLoaded) return
     return this.state.categories.map(item => {
-      return <PWCategoriesItem key={item.id} {...item} />
+      return <PWCategoriesItem key={item._id} {...item} />
     })
   }
 }

@@ -1,0 +1,16 @@
+{"_id":{"$numberInt":"0"},"category":"cars"}
+{"_id":{"$numberInt":"1"},"category":"nature"}
+{"_id":{"$numberInt":"2"},"category":"Video_Games"}
+{"_id":{"$numberInt":"3"},"category":"Landscapes"}
+{"_id":{"$numberInt":"4"},"category":"animals"}
+{"_id":{"$numberInt":"5"},"category":"anime"}
+{"_id":{"$numberInt":"6"},"category":"mountains"}
+{"_id":{"$numberInt":"7"},"category":"Clouds"}
+{"_id":{"$numberInt":"8"},"category":"water"}
+{"_id":{"$numberInt":"9"},"category":"Trees"}
+{"_id":{"$numberInt":"10"},"category":"fantasy art"}
+{"_id":{"$numberInt":"11"},"category":"Flowers"}
+{"_id":{"$numberInt":"12"},"category":"outer space"}
+{"_id":{"$numberInt":"13"},"category":"Abstract"}
+{"_id":{"$numberInt":"14"},"category":"ocean"}
+{"_id":{"$numberInt":"15"},"category":"city"}
