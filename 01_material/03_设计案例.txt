@@ -1,4 +1,7 @@
-react + React-Router + fetch + webpack + sass + antd + json-server(mock)
+react + React-Router + fetch + webpack + sass + antd + json-server(mock) 
+
+added time: 180615 0704 
+`fetchJSONP + MongoDB`
 
 prop-types --> data validation
 

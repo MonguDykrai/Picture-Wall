@@ -122,6 +122,8 @@ var left = getCssProperty("my-div", "left");
 2018年6月14日06:15:51
 _renderPWListItem执行了4次！！！！
 
+## 通过MongoDB提供分类导航数据
+
 ## 待解决
 
 - _renderPWListItem执行次数异常
