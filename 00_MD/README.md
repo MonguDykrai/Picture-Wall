@@ -124,6 +124,25 @@ _renderPWListItem执行了4次！！！！
 
 ## 通过MongoDB提供分类导航数据
 
+```js
+
+fetch('http://localhost:5000/aa/a') // cars/1
+.then(res => {
+  return res.json()
+})
+.then(data => {
+  console.log(data)
+  this.setState({
+    categories: data,
+    isLoaded: true
+  })
+})
+.catch(err => {
+  console.error(err)
+})
+
+```
+
 ## 待解决
 
 - _renderPWListItem执行次数异常
@@ -138,3 +157,15 @@ _renderPWListItem执行了4次！！！！
 3. 登录验证
 4. 面包屑导航
 5. 筛选
+
+## NaN
+
+卡了挺久时间！！！
+
+用isNaN来做判断
+
+```js
+
+NaN !== NaN // true
+
+```

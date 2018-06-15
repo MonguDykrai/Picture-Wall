@@ -1,4 +1,5 @@
 import React from 'react'
+import fetchJsonp from 'fetch-jsonp'
 import PropTypes from 'prop-types'
 import PWListItem from './sub'
 
@@ -41,7 +42,7 @@ export default class PWWallpapers extends React.Component {
     const { currentPathName } = this.state
     return this.state.listItems.map(item => {
       console.log(item) // _renderPWListItem执行了两次
-      return <PWListItem key={ item.id } { ...item } currentPathName={ currentPathName } />
+      return <PWListItem key={ item._id } { ...item } currentPathName={ currentPathName } />
     })
   }
 
@@ -59,7 +60,7 @@ export default class PWWallpapers extends React.Component {
   }
 
   _doFetch(path) {
-    fetch(`http://localhost:3004${path}`)
+    fetchJsonp(`http://localhost:5000${path}/`)
       .then(res => {
         return res.json()
       })

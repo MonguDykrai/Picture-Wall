@@ -1,4 +1,5 @@
 import React from 'react'
+import fetchJsonp from 'fetch-jsonp'
 import PWGalleryItem from './sub/category-item'
 import PWDetailPicture from './sub/detail-picture'
 
@@ -64,17 +65,22 @@ export default class PWWPCategoryDetail extends React.Component {
   }
 
   _doFetch(path) {
-    fetch(`http://localhost:3004${path}`)
+    fetchJsonp(`http://localhost:5000${path}/`)
       .then(res => {
         return res.json()
       })
       .then(data => {
-        // console.log(`data：${data}`);
+        // console.warn(data)
+        if (data.length === 1) data = data[0]
+      
         if (data.address) { // request for get detail picture url
+          console.log(`true`)
+          console.log(data.address)
           this.setState({
             detailPicUrl: data.address
           })
         } else {
+          console.log(`else`)
           this.setState({
             galleryItems: data,
             isLoaded: true
@@ -82,6 +88,9 @@ export default class PWWPCategoryDetail extends React.Component {
             // console.log(this.state.galleryItems);
           })
         }
+      })
+      .catch(err => {
+        console.log(err)
       })
   }
 
@@ -100,7 +109,7 @@ export default class PWWPCategoryDetail extends React.Component {
       }
       return this.state.galleryItems.map(item => {
         return (
-          <PWGalleryItem key={ item.id } {...item} />
+          <PWGalleryItem key={ item._id } {...item} />
         )
       })
     }
