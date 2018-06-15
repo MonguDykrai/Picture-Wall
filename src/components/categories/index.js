@@ -30,7 +30,6 @@ export default class PWCategories extends React.Component {
 
     this.state = {
       categories: this.props.initCategories,
-      isLoaded: false
     }
   }
   render() {
@@ -45,22 +44,7 @@ export default class PWCategories extends React.Component {
     )
   }
 
-  componentDidMount() {
-    fetchJsonp('http://localhost:5000/')
-    .then(res => {
-      return res.json()
-    })
-    .then(data => {
-      console.log(data)
-      this.setState({
-        categories: data,
-        isLoaded: true
-      })
-    })
-  }
   _renderPWCategoriesItem() {
-    const { isLoaded } = this.state
-    if (!isLoaded) return
     return this.state.categories.map(item => {
       return <PWCategoriesItem key={item._id} {...item} />
     })
