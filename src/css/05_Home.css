@@ -1,0 +1,253 @@
+.navigation-container {
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 45px;
+  background-color: #151c22;
+  border-bottom: 1px solid #323234;
+}
+
+.nav-left {}
+
+a.nav-left-link {
+  margin-left: 20px;
+  line-height: 45px;
+}
+
+.nav-right {}
+
+a.nav-right-link {
+  margin-right: 20px;
+  line-height: 45px;
+}
+
+.logo-container {
+  width: 100%;
+  height: 100px;
+  padding: 20px 30px 0;
+}
+
+.logo-inner {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #323234;
+}
+
+.logo-inner img.img-logo {
+  width: 226px;
+  margin: 0 auto;
+}
+
+.logo-inner p.logo-description {
+  width: 316px;
+  margin: 0 auto;
+}
+
+.categories-container {
+  width: 100%;
+  height: 134px;
+  padding: 20px 30px 0;
+}
+
+.categories-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.categories-inner ul.ul-categories {
+  margin-right: 20px;
+}
+
+/* 分类项 */
+
+.categories-inner ul.ul-categories li.ul-categories-item {
+  float: left;
+  padding: 4px 8px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  color: #fff;
+  background-color: #181818;
+  border-radius: 5px;
+}
+
+/* 面包屑导航 + 筛选条件 */
+
+.breadcrumb-sortby-container {
+  width: 100%;
+  height: 30px;
+  padding: 0 30px;
+}
+
+.breadcrumb-sortby-inner {
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 30px;
+  padding-right: 15px;
+  border-bottom: 1px solid #323234;
+}
+
+/* Home -> Cars -> BMW */
+
+.breadcrumb-sortby-inner .bread-crumb-nav {
+  height: 100%;
+  color: #2a9f90;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+/* Sort by: Freshness Downloads Rating */
+
+.breadcrumb-sortby-inner div.sort-by {
+  height: 100%;
+  color: #999;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+/* Freshness Downloads Rating */
+
+.breadcrumb-sortby-inner div.sort-by>a.sort-type {
+  display: inline-block;
+  margin-right: 5px;
+  color: #2a9f90;
+}
+
+/* One of Freshness or Downloads or Rating */
+
+div.sort-by a.sort-type.current {
+  display: inline-block;
+  height: 26px;
+  color: #fff !important;
+  padding: 0 10px;
+  background-color: #000;
+}
+
+/* wallpapers */
+
+.wallpapers-container {
+  padding: 70px 40px 0;
+}
+
+.wallpapers-container ul.wp-list {}
+
+ul.wp-list li.wp-list-item {
+  float: left;
+  width: 220px;
+  height: 204px;
+  overflow: hidden;
+  margin-right: 7px;
+  margin-bottom: 7px;
+  background-color: #141415;
+}
+
+ul.wp-list li.wp-list-item .wp-list-item-li-img {
+  width: 100%;
+  height: 160px;
+  background-image: url(../images/cars/125879.jpg);
+  background-size: cover;
+}
+
+ul.wp-list li.wp-list-item p.pic-desc {
+  width: 100%;
+  height: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+ul.wp-list li.wp-list-item .pic-created-time {
+  width: 100%;
+  height: 24px;
+  text-align: center;
+}
+
+/* wallpapers-category-detail */
+
+.wallpapers-category-detail-container {
+  padding: 50px 40px 0;
+  width: 100%;
+  height: 300px;
+}
+
+.wallpapers-category-detail-container .category-detail-gallery {
+  position: relative;
+  width: 1130px;
+  height: 150px;
+  padding: 0 80px;
+  margin: 0 auto;
+  background-color: #19191B;
+  overflow: hidden;
+}
+
+.category-detail-gallery div.gallery-leftArrow-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80px;
+  height: 150px;
+  background-color: #19191B;
+  z-index: 3;
+}
+
+span.arrowLeft {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  color: #19191B;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.category-detail-gallery div.gallery-rightArrow-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80px;
+  height: 150px;
+  background-color: #19191B;
+}
+
+span.arrowRight {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  color: #19191B;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.category-detail-gallery ul.ul-gallery {
+  position: absolute;
+  left: 80px;
+  width: 400%;
+  height: 100%;
+  overflow: initial;
+}
+
+ul.ul-gallery li.ul-gallery-item {
+  float: left;
+  width: 114px;
+  height: 84px;
+  margin: 33px 18px 33px 0;
+}
+
+ul.ul-gallery li.ul-gallery-item a {
+  display: block;
+  border: 2px solid #fff;
+}
+
+.wallpapers-category-detail-container .category-detail-picture-container {
+  width: 1250px;
+  margin: 50px auto 70px;
+}

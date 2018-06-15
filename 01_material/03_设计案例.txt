@@ -1,0 +1,26 @@
+react + React-Router + fetch + webpack + sass + antd + json-server(mock)
+
+prop-types --> data validation
+
+json-server(mock)
+https://egghead.io/lessons/javascript-creating-demo-apis-with-json-server
+
+ES6
+
+body {
+  width: 1366px;
+  height: 100%; /* 950px */
+}
+
+source ref:
+http://www.wallpaperhi.com/
+
+option:
+Login function
+If not login redirect to Home page
+database:MongoDB
+backend admin system
+
+backend
+nodejs
+
